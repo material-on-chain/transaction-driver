@@ -295,7 +295,7 @@ func (tx UcoinTransferTx) ToBytes() []byte {
 	if tx.Memo == nil {
 		txBytes = append(txBytes, 0x00)
 	} else {
-		txBytes = append(txBytes, byte(len(tx.Memo)))
+		txBytes = append(txBytes, int64ToUvarint(int64(len(tx.Memo)))...)
 		txBytes = append(txBytes, tx.Memo...)
 	}
 
@@ -318,7 +318,7 @@ func (tx UcoinTransferTx) GetHash() []byte {
 	if tx.Memo == nil {
 		txBytes = append(txBytes, 0x00)
 	} else {
-		txBytes = append(txBytes, byte(len(tx.Memo)))
+		txBytes = append(txBytes, int64ToUvarint(int64(len(tx.Memo)))...)
 		txBytes = append(txBytes, tx.Memo...)
 	}
 
